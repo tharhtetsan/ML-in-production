@@ -132,3 +132,5 @@ dmypy.json
 *.db
 
 mlruns/
+
+experiment-tracking/mlflow/exp-tracking-and-fine-tune/model/
