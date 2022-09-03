@@ -3,4 +3,4 @@
 MLflow experience tracking
 
 
-![](images\mlflow_acc_track.PNG)
+![](images/mlflow_acc_track.PNG)
