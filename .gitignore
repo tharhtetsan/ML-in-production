@@ -133,4 +133,6 @@ dmypy.json
 
 mlruns/
 
+service-acc/
+
 experiment-tracking/mlflow/exp-tracking-and-fine-tune/model/
