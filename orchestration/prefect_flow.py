@@ -1,3 +1,4 @@
+from re import S
 import mlflow
 from mlflow.models.signature import infer_signature
 
@@ -11,10 +12,9 @@ from tensorflow.keras.callbacks import LearningRateScheduler
 
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 from hyperopt.pyll import scope
-
-
-mlflow.set_tracking_uri("sqlite:///mlflow.db")
-mlflow.set_experiment("ths-skin-cancer-experiment")
+from prefect import flow,task
+from prefect.task_runners import SequentialTaskRunner
+#prefect orion start
 
 
 img_width,img_height = 128,128
@@ -23,6 +23,8 @@ img_size = (img_width,img_height)
 batch_size = 32
 epochs = 0
 
+
+@task
 def lr_schedule(epoch,lr):
     # Learning Rate Schedule
 
@@ -48,7 +50,7 @@ def lr_schedule(epoch,lr):
     return lr
 
 
-
+@task
 def create_model(input_size,kernel_size,num_filter,num_conv_layer,num_output):
     model = Sequential(Conv2D(num_filter,kernel_size = kernel_size,padding='same',activation = 'relu',input_shape =input_size ))
     for i in range(num_conv_layer):
@@ -62,8 +64,8 @@ def create_model(input_size,kernel_size,num_filter,num_conv_layer,num_output):
     return model
 
 
-
-def load_data_generator(data_path = r"E:\deep_learning\skin_cancer\dataset\dataset"):
+@task
+def load_data_generator(data_path = r"E:\data_share_ths\dataset\cat_and_dog\cats_and_dogs_filtered"):
     _datagen = ImageDataGenerator(
         rescale=1/255,
 		width_shift_range=0.1,
@@ -78,7 +80,7 @@ def load_data_generator(data_path = r"E:\deep_learning\skin_cancer\dataset\datas
     )
 
     test_gen = _datagen.flow_from_directory(
-        data_path+"/test",
+        data_path+"/validation",
         target_size = img_size,
         batch_size=batch_size,
         class_mode = "categorical"
@@ -87,12 +89,13 @@ def load_data_generator(data_path = r"E:\deep_learning\skin_cancer\dataset\datas
     return train_gen,test_gen
 
 
-
+@task
 def train_model_search(train_gen : ImageDataGenerator,test_gen :ImageDataGenerator):
     
 
     def objective(params):
-        with mlflow.start_run():  
+        with mlflow.start_run():
+            print("####train_model_search####")  
             mlflow.set_tag("developer","tharhtet")
             mlflow.log_params(params)
             
@@ -159,31 +162,31 @@ def train_model_search(train_gen : ImageDataGenerator,test_gen :ImageDataGenerat
     "filter_size" : scope.int(hp.choice("filter_size",filters_size)),
     "kernel_size" : hp.choice("kernel_size",kernel_sizes),
     "learning_rate" : hp.loguniform("learning_rate",-3,0),
-    "epochs" : scope.int(hp.quniform("epochs",2,10,1))
+    "epochs" : scope.int(hp.quniform("epochs",2,5,1))
     }
 
     best_result = fmin(
     fn=objective,
     space=search_space,
     algo=tpe.suggest,
-    max_evals=5,
+    max_evals=1,
     trials=Trials()
     )
 
     return best_result
 
+@task
+def train_best_model(best_model_config:dict,train_gen : ImageDataGenerator,test_gen :ImageDataGenerator):
 
-def train_best_model(train_gen : ImageDataGenerator,test_gen :ImageDataGenerator):
-
+    """
     best_model_config ={
         'conv_layers': 3.0,
         'epochs': 10.0,
         'filter_size': 1,
         'kernel_size': 2,
         'learning_rate': 0.9057050345989054
-    }
-
-    epochs = best_model_config["epochs"]
+    """
+    epochs = int(best_model_config["epochs"])
     num_train = len(train_gen.filenames)
     num_test = len(test_gen.filenames)
     steps_per_epoch=int(num_train / batch_size)
@@ -191,7 +194,7 @@ def train_best_model(train_gen : ImageDataGenerator,test_gen :ImageDataGenerator
     model = create_model(input_size= model_input,
             kernel_size = best_model_config["kernel_size"],
             num_filter=best_model_config["filter_size"],
-            num_conv_layer = best_model_config["conv_layers"],
+            num_conv_layer = int(best_model_config["conv_layers"]),
             num_output=2)
     
     model.compile(loss='categorical_crossentropy',
@@ -233,3 +236,15 @@ def train_best_model(train_gen : ImageDataGenerator,test_gen :ImageDataGenerator
 
 
 
+@flow
+def main():
+    mlflow.set_tracking_uri("sqlite:///mlflow.db")
+    mlflow.set_experiment("ths-cat-and-dog-experiment")
+    
+    train_gen, val_gen = load_data_generator(data_path =  r"E:\data_share_ths\dataset\cat_and_dog\cats_and_dogs_filtered")
+    print("OK Na Sa")
+    best_model = train_model_search(train_gen=train_gen,test_gen=val_gen)
+    train_best_model(best_model_config=best_model,train_gen=train_gen,test_gen=val_gen)
+
+
+main()
