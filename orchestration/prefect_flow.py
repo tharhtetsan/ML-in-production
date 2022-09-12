@@ -177,7 +177,8 @@ def train_model_search(train_gen : ImageDataGenerator,test_gen :ImageDataGenerat
 
 @task
 def train_best_model(best_model_config:dict,train_gen : ImageDataGenerator,test_gen :ImageDataGenerator):
-
+    filters_size = [16,32,64]
+    kernel_sizes= [(3,3),(5,5),(7,7)]
     """
     best_model_config ={
         'conv_layers': 3.0,
@@ -192,8 +193,8 @@ def train_best_model(best_model_config:dict,train_gen : ImageDataGenerator,test_
     steps_per_epoch=int(num_train / batch_size)
 
     model = create_model(input_size= model_input,
-            kernel_size = best_model_config["kernel_size"],
-            num_filter=best_model_config["filter_size"],
+            kernel_size = kernel_sizes[best_model_config["kernel_size"]],
+            num_filter=filters_size[best_model_config["filter_size"]],
             num_conv_layer = int(best_model_config["conv_layers"]),
             num_output=2)
     
@@ -236,12 +237,13 @@ def train_best_model(best_model_config:dict,train_gen : ImageDataGenerator,test_
 
 
 
+
 @flow
 def main():
     mlflow.set_tracking_uri("sqlite:///mlflow.db")
     mlflow.set_experiment("ths-cat-and-dog-experiment")
     
-    train_gen, val_gen = load_data_generator(data_path =  r"E:\data_share_ths\dataset\cat_and_dog\cats_and_dogs_filtered")
+    train_gen, val_gen = load_data_generator(data_path =  r"E:\data_share_ths\dataset\cat_and_dog\cats_and_dogs_filtered").result()
     print("OK Na Sa")
     best_model = train_model_search(train_gen=train_gen,test_gen=val_gen)
     train_best_model(best_model_config=best_model,train_gen=train_gen,test_gen=val_gen)
