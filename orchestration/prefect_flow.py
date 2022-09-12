@@ -24,7 +24,7 @@ batch_size = 32
 epochs = 0
 
 
-@task
+
 def lr_schedule(epoch,lr):
     # Learning Rate Schedule
 
@@ -50,7 +50,7 @@ def lr_schedule(epoch,lr):
     return lr
 
 
-@task
+
 def create_model(input_size,kernel_size,num_filter,num_conv_layer,num_output):
     model = Sequential(Conv2D(num_filter,kernel_size = kernel_size,padding='same',activation = 'relu',input_shape =input_size ))
     for i in range(num_conv_layer):
@@ -64,42 +64,13 @@ def create_model(input_size,kernel_size,num_filter,num_conv_layer,num_output):
     return model
 
 
-@task
-def load_data_generator(data_path = r"E:\data_share_ths\dataset\cat_and_dog\cats_and_dogs_filtered"):
-    _datagen = ImageDataGenerator(
-        rescale=1/255,
-		width_shift_range=0.1,
-		height_shift_range=0.1,
-		horizontal_flip=True)
 
-    train_gen = _datagen.flow_from_directory(
-        data_path+"/train",
-        target_size = img_size,
-        batch_size=batch_size,
-        class_mode = "categorical"
-    )
-
-    test_gen = _datagen.flow_from_directory(
-        data_path+"/validation",
-        target_size = img_size,
-        batch_size=batch_size,
-        class_mode = "categorical"
-    )
-
-    return train_gen,test_gen
-
-
-@task
-def train_model_search(train_gen : ImageDataGenerator,test_gen :ImageDataGenerator):
-    
-
-    def objective(params):
+def objective(params):
         with mlflow.start_run():
             print("####train_model_search####")  
             mlflow.set_tag("developer","tharhtet")
             mlflow.log_params(params)
-            
-            
+
             epochs = params["epochs"]
             num_train = len(train_gen.filenames)
             num_test = len(test_gen.filenames)
@@ -114,8 +85,6 @@ def train_model_search(train_gen : ImageDataGenerator,test_gen :ImageDataGenerat
             model.compile(loss='categorical_crossentropy',
                         optimizer=Adam(lr=params["learning_rate"]),
                         metrics=['accuracy'])
-
-        
 
             lr_callback = LearningRateScheduler(lr_schedule)
             history = model.fit_generator(train_gen, steps_per_epoch=steps_per_epoch, epochs=epochs,
@@ -144,13 +113,39 @@ def train_model_search(train_gen : ImageDataGenerator,test_gen :ImageDataGenerat
             signature = infer_signature(test_img, model.predict(test_img))
             mlflow.keras.log_model(model, "scc_cnn", signature=signature)
 
-        
-            
         return {'loss' :final_valLoss,'status':STATUS_OK }
 
-        
 
 
+
+
+def load_data_generator(data_path = r"E:\data_share_ths\dataset\cat_and_dog\cats_and_dogs_filtered"):
+    _datagen = ImageDataGenerator(
+        rescale=1/255,
+		width_shift_range=0.1,
+		height_shift_range=0.1,
+		horizontal_flip=True)
+
+    train_gen = _datagen.flow_from_directory(
+        data_path+"/train",
+        target_size = img_size,
+        batch_size=batch_size,
+        class_mode = "categorical"
+    )
+
+    test_gen = _datagen.flow_from_directory(
+        data_path+"/validation",
+        target_size = img_size,
+        batch_size=batch_size,
+        class_mode = "categorical"
+    )
+
+    return train_gen,test_gen
+
+
+@task
+def train_model_search(train_gen,test_gen):
+    
     conv_layers = 2
     filters_size = [16,32,64]
     kernel_sizes= [(3,3),(5,5),(7,7)]
@@ -243,9 +238,8 @@ def main():
     mlflow.set_tracking_uri("sqlite:///mlflow.db")
     mlflow.set_experiment("ths-cat-and-dog-experiment")
     
-    train_gen, val_gen = load_data_generator(data_path =  r"E:\data_share_ths\dataset\cat_and_dog\cats_and_dogs_filtered").result()
-    print("OK Na Sa")
-    best_model = train_model_search(train_gen=train_gen,test_gen=val_gen)
+    train_gen, val_gen = load_data_generator(data_path =  r"E:\data_share_ths\dataset\cat_and_dog\cats_and_dogs_filtered")
+    best_model = train_model_search(train_gen,val_gen)
     train_best_model(best_model_config=best_model,train_gen=train_gen,test_gen=val_gen)
 
 
