@@ -118,7 +118,7 @@ def objective(params):
 
 
 
-
+@task
 def load_data_generator(data_path = r"E:\data_share_ths\dataset\cat_and_dog\cats_and_dogs_filtered"):
     _datagen = ImageDataGenerator(
         rescale=1/255,
