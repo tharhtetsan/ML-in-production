@@ -64,7 +64,7 @@ eg : **1Q5zfSzOwNLq1cNwTkLf0kLY7yRljbeNv** in my example
 ##### 2. set this folder as default remote location for DVC
 
 ```bash
-dvc remote add -d storage gdrive://1Q5zfSzOwNLq1cNwTkLf0kLY7yRljbeNv
+dvc remote add -d storage gdrive://1uBdkneXnYW8mLOrsdzjdvHGTkg0AABSA
 ```
 
 ##### 3. update this in git.
