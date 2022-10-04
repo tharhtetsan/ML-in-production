@@ -53,6 +53,13 @@ cat 2_data_and_model_versioning\skin_cancer_dataset\Melanoma.dvc
 
 ### DVC with Remote Storage 
 
+```bash
+pip install dvc
+pip install dvc-gdrive
+```
+
+
+
 ##### 1. Create folder and get the google folder ID as shown in figure:
 
 eg : **1Q5zfSzOwNLq1cNwTkLf0kLY7yRljbeNv** in my example
@@ -64,7 +71,7 @@ eg : **1Q5zfSzOwNLq1cNwTkLf0kLY7yRljbeNv** in my example
 ##### 2. set this folder as default remote location for DVC
 
 ```bash
-dvc remote add -d storage gdrive://1uBdkneXnYW8mLOrsdzjdvHGTkg0AABSA
+dvc remote add -d storage gdrive://1Q5zfSzOwNLq1cNwTkLf0kLY7yRljbeNv
 ```
 
 ##### 3. update this in git.
