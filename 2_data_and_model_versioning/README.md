@@ -37,7 +37,7 @@ dvc add 2_data_and_model_versioning\skin_cancer_dataset\Melanocytic_nevi\
 dvc add 2_data_and_model_versioning\skin_cancer_dataset\Melanoma\
 ```
 
-##### Now check the following:
+##### 4. Now check the following:
 
 ```bash
 cat 2_data_and_model_versioning\.gitignore
@@ -45,7 +45,7 @@ cat 2_data_and_model_versioning\skin_cancer_dataset\Benign_keratosis-like_lesion
 cat 2_data_and_model_versioning\skin_cancer_dataset\Melanoma.dvc
 ```
 
-##### Remark : Now we need to do step-3 and step-2 in every data change.
+##### 5. Remark : Now we need to do step-3 and step-2 in every data change.
 
 
 
@@ -53,30 +53,29 @@ cat 2_data_and_model_versioning\skin_cancer_dataset\Melanoma.dvc
 
 ### DVC with Remote Storage 
 
-1. ##### Create folder and get the google folder ID as shown in figure:
+##### 1. Create folder and get the google folder ID as shown in figure:
 
-   eg : **1Q5zfSzOwNLq1cNwTkLf0kLY7yRljbeNv** in my example
+eg : **1Q5zfSzOwNLq1cNwTkLf0kLY7yRljbeNv** in my example
 
 ![](images/2_google_drive.PNG)
 
 
 
-2. #####  set this folder as default remote location for DVC
+##### 2. set this folder as default remote location for DVC
 
-   ```bash
-   dvc remote add -d storage gdrive://1Q5zfSzOwNLq1cNwTkLf0kLY7yRljbeNv
-   ```
+```bash
+dvc remote add -d storage gdrive://1Q5zfSzOwNLq1cNwTkLf0kLY7yRljbeNv
+```
 
-3. ##### update this in git.
+##### 3. update this in git.
 
-   ```bash
-   git commit -m "set gdrive in dvc"
-   ```
+```bash
+git commit -m "set gdrive in dvc"
+```
 
-4. ##### upload your data to gdrive
+##### 4. upload your data to gdrive
 
-   ```bash
-   dvc push
-   ```
+```bash
+dvc push
+```
 
-   
