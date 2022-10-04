@@ -1,0 +1,5 @@
+outs:
+- md5: 61be4b01325875f24bde49c42807bd6b.dir
+  size: 4873568
+  nfiles: 100
+  path: Melanocytic_nevi

@@ -1,0 +1,5 @@
+outs:
+- md5: b4f114d8286eeccf9cdba51e370744e6.dir
+  size: 4662845
+  nfiles: 100
+  path: Melanoma

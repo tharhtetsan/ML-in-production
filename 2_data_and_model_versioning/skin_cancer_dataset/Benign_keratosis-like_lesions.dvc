@@ -1,0 +1,5 @@
+outs:
+- md5: 840b53347ee6f3e4441c792394bf0d9a.dir
+  size: 4390918
+  nfiles: 100
+  path: Benign_keratosis-like_lesions
