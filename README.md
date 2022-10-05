@@ -8,7 +8,7 @@ Course outline
 | 1.1 Data loading techniques                                  |             |                                           |
 | 1.2 Fine Turning techniques                                  |             |                                           |
 |                                                              |             |                                           |
-| 2. [Data and model versioning                                |             |                 git, dvc                  |
+| 2. [Data and model versioning](https://github.com/tharhtetsan/ML-in-production/tree/main/2_data_and_model_versioning) |             |                 git, dvc                  |
 |                                                              |             |                                           |
 | 3. [Experiment tracking](https://github.com/tharhtetsan/ML-in-production/tree/main/3_experiment-tracking) |             |                mlflow, CNN                |
 |                                                              |             |                                           |
