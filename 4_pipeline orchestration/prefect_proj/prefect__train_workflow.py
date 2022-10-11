@@ -253,12 +253,12 @@ def train_best_model(best_model_config:dict,train_imgs,train_label,test_imgs,tes
 
 
 @flow
-def main():
-    mlflow.set_tracking_uri("sqlite:///mlflow.db")
+def prefect_proj():
+    mlflow.set_tracking_uri("sqlite:///mlflow_ths.db")
     mlflow.set_experiment("ths-cat-and-dog-new-exp")
     train_imgs,train_label,test_imgs,test_label = load_data_generator(data_path =  r"E:\data_share_ths\dataset\cat_and_dog\cats_and_dogs_filtered")
     best_model_config = train_model_search(train_imgs,train_label,test_imgs,test_label)
     train_best_model(best_model_config,train_imgs,train_label,test_imgs,test_label)
 
 
-main()
+prefect_proj()
