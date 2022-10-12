@@ -28,7 +28,8 @@ def load_test_data(data_path = r"E:\data_share_ths\dataset\cat_and_dog\cats_and_
     test_imgs,test_label = [],[]
     for foldername in os.listdir(data_path+"\\validation"):
         for filename in os.listdir(data_path+"\\validation\\"+foldername):
-            if filename.strip() == "cats":
+            
+            if foldername.strip() == "cats":
                 test_label.append(0)
             else:
                 test_label.append(1)
@@ -53,12 +54,13 @@ def load_model(model_name,stage):
 
 def model_predict(test_imgs,tf_model):
     predicted_result = tf_model.predict(test_imgs)
-    print("predicted_result : ",predicted_result)
     return predicted_result
 
 
-def calculate_accuracy(test_labels):
-    Pass
+def calculate_accuracy(test_labels,predicted_labels):
+    pred_labels = [np.argmax(x) for x in predicted_labels]
+    accuracy = np.sum(pred_labels==test_labels)/len(test_labels) * 100
+    print("accuracy : ",accuracy)
 
 
 def evaluation_process():
@@ -67,8 +69,7 @@ def evaluation_process():
     test_imgs,test_label = load_test_data(data_path = r"E:\data_share_ths\dataset\cat_and_dog\cats_and_dogs_filtered")
     tf_model = load_model(model_name=model_name,stage=model_stage)
     predicted_result = model_predict(test_imgs=test_imgs,tf_model=tf_model)
-    print(len(test_imgs))
-    print(predicted_result[:10])
+    calculate_accuracy(test_labels=test_label,predicted_labels=predicted_result)
 
 
 evaluation_process()
