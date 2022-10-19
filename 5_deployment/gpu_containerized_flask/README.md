@@ -51,4 +51,4 @@ FROM nvcr.io/nvidia/pytorch:20.11-py3
 - [Nvidia Containers](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch)
 - [Nvidia Docker Hubs](https://hub.docker.com/r/nvidia/cuda)
 - [Nvidia-docker github](https://github.com/NVIDIA/nvidia-docker)
-
+- [nlp.stanford.edu](https://nlp.stanford.edu/mistral/tutorials/gcp_plus_kubernetes.html)
