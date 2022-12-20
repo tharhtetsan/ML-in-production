@@ -1,1 +1,6 @@
 mlflow ui --backend-store-uri sqlite:///mlflow.db
+
+
+
+PATH=$PATH:/home/tharhtet_3/.local/bin
+mlflow ui --backend-store-uri sqlite:///mlflow.db DEFAULT_ARTIFACT_ROOT=gs://aiteam-mlflow-storage-bucket/models -h 0.0.0.0 -p 8888
