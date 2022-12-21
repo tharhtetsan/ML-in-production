@@ -1,3 +1,4 @@
 mlflow
 boto3
 google-cloud-storage
+psycopg2-binary

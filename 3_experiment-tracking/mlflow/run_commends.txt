@@ -1,1 +1,13 @@
 mlflow ui --backend-store-uri sqlite:///mlflow.db
+
+
+
+PATH=$PATH:/home/tharhtet_3/.local/bin
+
+pip3 install google-cloud-storage
+
+export GOOGLE_APPLICATION_CREDENTIALS=/home/tharhtet_3/serviceAccount.json
+
+
+
+mlflow ui --backend-store-uri sqlite:///mlflow.db --default-artifact-root gs://aiteam-mlflow-storage-bucket/models -h 0.0.0.0 -p 8888

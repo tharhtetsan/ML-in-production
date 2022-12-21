@@ -51,4 +51,6 @@ FROM nvcr.io/nvidia/pytorch:20.11-py3
 - [Nvidia Containers](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch)
 - [Nvidia Docker Hubs](https://hub.docker.com/r/nvidia/cuda)
 - [Nvidia-docker github](https://github.com/NVIDIA/nvidia-docker)
-
+- [nlp.stanford.edu](https://nlp.stanford.edu/mistral/tutorials/gcp_plus_kubernetes.html)
+- [Kubernetes-engine-how-to](https://cloud.google.com/kubernetes-engine/docs/how-to/gpus)
+- [IBM-attached-gpu-resources](https://www.ibm.com/docs/en/cloud-private/3.1.2?topic=deployments-creating-deployment-attached-gpu-resources)
