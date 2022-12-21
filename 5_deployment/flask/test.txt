@@ -1,0 +1,1 @@
+docker build -t ths --build-arg default_SERVER=prod  --build-arg default_PORT=3000 --build-arg default_MY_VAR=thar . 
