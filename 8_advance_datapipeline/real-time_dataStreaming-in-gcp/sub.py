@@ -6,9 +6,9 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"service-acc/service_acc.json"
 
 
 # TODO(developer)
-project_id = input("your-project-id : ")
-subscription_id = input("your-subscription-id :")
-# Number of seconds the subscriber should listen for messages
+project_id = "sktblog" #input("your-project-id : ")
+subscription_id = "thstest_topic-sub-1" #input("your-subscription-id :")
+# Number of seconds the subscriber should listen for messages 
 timeout = 5.0
 
 subscriber = pubsub_v1.SubscriberClient()
@@ -17,7 +17,9 @@ subscriber = pubsub_v1.SubscriberClient()
 subscription_path = subscriber.subscription_path(project_id, subscription_id)
 
 def callback(message: pubsub_v1.subscriber.message.Message) -> None:
+    import time
     print(f"Received {message}.")
+    print("Receive Time : ",time.time())
     message.ack()
 
 streaming_pull_future = subscriber.subscribe(subscription_path, callback=callback)
