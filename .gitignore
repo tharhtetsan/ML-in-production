@@ -135,6 +135,7 @@ mlruns/
 
 service-acc/
 
-
+*.h5
+*.tflite
 
 experiment-tracking/mlflow/exp-tracking-and-fine-tune/model/

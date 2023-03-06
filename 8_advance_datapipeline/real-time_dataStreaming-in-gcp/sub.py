@@ -9,7 +9,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"service-acc/service_acc.json"
 project_id = "sktblog" #input("your-project-id : ")
 subscription_id = "thstest_topic-sub-1" #input("your-subscription-id :")
 # Number of seconds the subscriber should listen for messages 
-timeout = 5.0
+timeout = 60.0
 
 subscriber = pubsub_v1.SubscriberClient()
 # The `subscription_path` method creates a fully qualified identifier
