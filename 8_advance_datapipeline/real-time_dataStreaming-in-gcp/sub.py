@@ -31,4 +31,4 @@ with subscriber:
         streaming_pull_future.result(timeout=timeout)
     except TimeoutError:
         streaming_pull_future.cancel()  # Trigger the shutdown.
-        streaming_pull_future.result()  # Block until the shutdown is complete.
+        streaming_pull_future.result()  # Block until the shutdown is complete. 

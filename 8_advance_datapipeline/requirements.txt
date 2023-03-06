@@ -1,1 +1,2 @@
 google-cloud-pubsub
+google-cloud-bigquery
