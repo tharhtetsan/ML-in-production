@@ -135,7 +135,31 @@ mlruns/
 
 service-acc/
 
-*.h5
+# Neural Network weights -----------------------------------------------------------------------------------------------
+*.weights
+*.pt
+*.pb
+*.onnx
+*.engine
+*.mlmodel
+*.torchscript
 *.tflite
+*.h5
+*_saved_model/
+*_web_model/
+*_openvino_model/
+darknet53.conv.74
+yolov3-tiny.conv.15
+*.ptl
+*.trt
 
 experiment-tracking/mlflow/exp-tracking-and-fine-tune/model/
+
+
+# C extensions
+*.so
+
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
