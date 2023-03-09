@@ -163,3 +163,5 @@ experiment-tracking/mlflow/exp-tracking-and-fine-tune/model/
 .DS_Store
 .AppleDouble
 .LSOverride
+
+tf_model/
