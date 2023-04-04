@@ -1,6 +1,6 @@
 #### SMS and Voice call with twilio
 
-![](imgs/Screenshot_2.png)
+![](imgs/Screenshot_3.png)
 
 
 
