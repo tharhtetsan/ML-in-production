@@ -4,6 +4,10 @@ from twilio.twiml.voice_response import VoiceResponse
 app = Flask(__name__)
 
 
+@app.route("/", methods=['GET', 'POST'])
+def home():
+    return "Hello local server"
+
 @app.route("/answer", methods=['GET', 'POST'])
 def answer_call():
     """Respond to incoming phone calls with a brief message."""
