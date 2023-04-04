@@ -2,7 +2,7 @@
 
 ![](imgs/Screenshot_2.png)
 
-<img src="imgs/IMG_1499.png" style="zoom:15%;" />
+
 
 
 ##### How to Run
