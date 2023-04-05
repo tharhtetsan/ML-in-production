@@ -1,0 +1,47 @@
+{
+  'responseId': '0b778002-0757-4952-bbf4-a4b28adf2ebc-bfbd87a2',
+ 'queryResult': {
+  'queryText': 'create a article about AI',
+   'parameters': {'syskeyword': 'AI'},
+    'allRequiredParamsPresent': True, 
+    'outputContexts': [
+      {
+      'name': 'projects/pybot-awwl/agent/sessions/c0caa770-2e24-658c-ef64-d396a7eb4c93/contexts/write', 
+      'lifespanCount': 5, 
+      'parameters': {
+        'syskeyword': 'AI', 
+        'syskeyword.original': 'AI'}
+        },
+         {'name': 'projects/pybot-awwl/agent/sessions/c0caa770-2e24-658c-ef64-d396a7eb4c93/contexts/an',
+          'lifespanCount': 5,
+           'parameters': {
+            'syskeyword': 'AI',
+             'syskeyword.original': 'AI'}
+             },
+              {'name': 'projects/pybot-awwl/agent/sessions/c0caa770-2e24-658c-ef64-d396a7eb4c93/contexts/article',
+               'lifespanCount': 5,
+                'parameters': {
+                  'syskeyword': 'AI', 'syskeyword.original': 'AI'}
+                  }
+        ],
+        
+        'intent': {
+          'name': 'projects/pybot-awwl/agent/intents/e817f2bd-b7e5-47ce-af2a-88e8b522e328',
+          'displayName': 'article-generate'
+          },
+          'intentDetectionConfidence': 0.67674285,
+          'languageCode': 'en',
+           'sentimentAnalysisResult': {
+            'queryTextSentiment': {
+              'score': -0.1,
+              'magnitude': 0.1
+              }
+              }
+          },
+              
+              'originalDetectIntentRequest': {
+                'source': 'DIALOGFLOW_CONSOLE', 
+                'payload': {}
+                }, 
+                'session': 'projects/pybot-awwl/agent/sessions/c0caa770-2e24-658c-ef64-d396a7eb4c93'
+  }
