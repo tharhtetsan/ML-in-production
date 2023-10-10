@@ -1,0 +1,21 @@
+steps:
+  # Install dependencies
+  - name: python
+    entrypoint: pip
+    args: ["install", "-r", "requirements.txt", "--user"]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/sktblog/dialogflow-test:$_SERVER', '.']
+
+
+  # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/sktblog/dialogflow-test:$_SERVER']
+  
+  
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: ['run', 'deploy', $_SERVER_ENDPOINT, '--image', 'gcr.io/sktblog/dialogflow-test:$_SERVER', '--region', 'asia-northeast1']
+
+
