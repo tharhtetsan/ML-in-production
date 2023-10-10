@@ -165,3 +165,5 @@ experiment-tracking/mlflow/exp-tracking-and-fine-tune/model/
 .LSOverride
 
 tf_model/
+*.DS_Store
+.DS_Store
