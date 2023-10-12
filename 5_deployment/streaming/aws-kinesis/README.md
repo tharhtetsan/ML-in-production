@@ -43,9 +43,15 @@ aws kinesis put-record \
     }'
 ```
 
+**pipenv install boto3 scikit-learn --python=3.9**
+
+**docker build . -t stream-model-duration:v1**
+
+
 References
 
 https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis-example.html
 
-
 https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/kinesis.html
+
+https://gallery.ecr.aws/lambda/python
