@@ -43,34 +43,9 @@ aws kinesis put-record \
     }'
 ```
 
-
-
-### [Reading from the stream](https://github.com/DataTalksClub/mlops-zoomcamp/tree/main/04-deployment/streaming#reading-from-the-stream)
-
-```shell
-KINESIS_STREAM_OUTPUT='ride_predictions'
-SHARD='shardId-000000000000'
-
-SHARD_ITERATOR=$(aws kinesis \
-    get-shard-iterator \
-        --shard-id ${SHARD} \
-        --shard-iterator-type TRIM_HORIZON \
-        --stream-name ${KINESIS_STREAM_OUTPUT} \
-        --query 'ShardIterator' \
-)
-
-RESULT=$(aws kinesis get-records --shard-iterator $SHARD_ITERATOR)
-
-echo ${RESULT} | jq -r '.Records[0].Data' | base64 --decode
-```
-
-
-
-
-
-
 References
 
 https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis-example.html
+
 
 https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/kinesis.html
