@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+set e+
+
 cd "$(dirname "$0")"
 
 
@@ -11,5 +14,9 @@ docker build -t ${LOCAL_IMAGE_NAME} ..
 docker-compose up -d
 
 pipenv run python test-docker.py
+ERROR_CODE=$?
 
-docker-compsoe down
+if [ ${ERROR_CODE} != 0 ]; then
+    docker-compose logs
+fi 
+    docker-compose down
