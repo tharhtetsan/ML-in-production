@@ -21,6 +21,7 @@ def init(prediction_stream_name: str, run_id: str, test_run: bool):
 
 
 def get_model_location(run_id):
+    "get model location from MLflow"
     model_location = os.getenv('MODEL_LOCATION')
 
     if model_location is not None:

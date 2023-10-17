@@ -1,3 +1,5 @@
+
+## Unit Testing
 ### Env Create
 
 ```bash
@@ -33,6 +35,9 @@ docker run -it --rm \
     stream-model-duration:test
 ```
 
+
+
+## Integration testing
 Mounting the model folder:
 
 ```bash
@@ -48,8 +53,9 @@ docker run -it --rm \
 ```
 
 Integration test
+
 ```bash
-chmod +x integraton-test/run.sh 
+chmod +x integration-test/run.sh 
 
 sleep 1
 
@@ -59,8 +65,43 @@ pipenv run python test-docker.py
 
 ```
 
+## Testing Cloudservices with Localstack
+
+####  Localstack commands
+check stream list from my AWS
+```bash
+aws kinesis list-streams
+```
+check stream list from localstack  AWS
+```bash
+aws --endpoint-url=http://localhost:4566 \
+    kinesis create-stream \
+    --stream-name ride_predictions \
+    --shard-count 1
+
+aws --endpoint-url=http://localhost:4566 kinesis list-streams
+```
+
+
+Test all 
+```bash
+pipenv run pytest tests/
+sudo sh integration-test/run.sh 
+```
+
+
+## Code quality: linting and formatting
+```bash
+pipenv install --dev pylint
+pipenv run pylint .
+```
+
+
+
 
 ### Reference
 https://linuxize.com/post/bash-shebang/
 
 https://github.com/localstack/localstack
+
+https://github.com/pylint-dev/pylint
