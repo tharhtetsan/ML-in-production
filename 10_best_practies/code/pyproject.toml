@@ -1,7 +1,12 @@
 [tool.pylint.messages_control]
 
 
-disable=[
-        "missing-function-docstring,
-        "missing-class-docstring"
-        ]
+disable = [
+        "missing-function-docstring",
+        "missing-class-docstring",
+        "missing-final-newline",
+        "missing-module-docstring",
+        "wrong-import-order",
+        "invalid-name",
+        "missing-timeout"
+]

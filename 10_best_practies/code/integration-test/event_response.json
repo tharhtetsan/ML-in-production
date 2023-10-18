@@ -1,0 +1,11 @@
+{
+    "predictions": [
+    {
+        "model": "ride_duration_prediction_model", 
+        "version": "Test123",
+        "prediction": {
+            "ride_duration": 10.0,
+                "ride_id": 156}
+                }
+    ]
+}
