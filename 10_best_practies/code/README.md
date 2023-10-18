@@ -54,11 +54,11 @@ docker run -it --rm \
 Integration test
 
 ```bash
-chmod +x integration-test/run.sh 
+chmod +x integration-test/run.sh
 
 sleep 1
 
-sh integration-test/run.sh 
+sh integration-test/run.sh
 
 pipenv run python test-docker.py
 
@@ -89,7 +89,7 @@ Test all
 
 ```bash
 pipenv run pytest tests/
-sudo sh integration-test/run.sh 
+sudo sh integration-test/run.sh
 ```
 
 ## Code quality:
@@ -108,7 +108,7 @@ echo $?
 ```bash
 pipenv install --dev black isort
 pipenv run black --diff .
-pipenv run black . 
+pipenv run black .
 
 pipenv run isort --diff .
 ```
@@ -116,10 +116,10 @@ pipenv run isort --diff .
 
 Run final test
 ```bash
-pipenv run black . 
+pipenv run black .
 pipenv run isort .
 pipenv run pylint --recursive=y .
-pipenv run pytest 
+pipenv run pytest
 
 ```
 
@@ -131,7 +131,9 @@ pipenv run pre-commit sample-config
 pipenv run pre-commit sample-config > .pre-commit-config.yaml
 ls .git/hooks
 pipenv run pre-commit install
-
+git add .pre-commit-config.yaml
+git add add .
+git commit -m "test"
 ```
 
 ### Reference
@@ -145,3 +147,5 @@ pipenv run pre-commit install
 - [black](https://github.com/psf/black)
 
 - [isort](https://pycqa.github.io/isort/)
+
+- [python-poetry](https://python-poetry.org/blog/announcing-poetry-1.2.0/)
