@@ -132,6 +132,8 @@ pipenv run pre-commit sample-config > .pre-commit-config.yaml
 ls .git/hooks
 pipenv run pre-commit install
 git add .pre-commit-config.yaml
+
+pipenv shell #active env for libs and pytest
 git add add .
 git commit -m "test"
 ```
