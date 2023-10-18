@@ -5,7 +5,6 @@ from pprint import pprint
 import boto3
 from deepdiff import DeepDiff
 
-
 kinesis_endpoint = os.getenv("KINESIS_ENDPOINT_URL", "http://localhost:4566")
 kinesis_client = boto3.client("kinesis", endpoint_url=kinesis_endpoint)
 

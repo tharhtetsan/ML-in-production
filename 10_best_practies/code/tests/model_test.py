@@ -1,7 +1,8 @@
-import model
-import sys
 import os
+import sys
 from pathlib import Path
+
+import model
 
 sys.path.append(os.getcwd())
 
@@ -58,6 +59,7 @@ def test_predict():
 
 
 def test_lambda_handler():
+    # pylint: disable=line-too-long
     model_mock = ModelMock(10.0)
     model_version = "Test123"
     model_service = model.ModelService(model_mock, model_version)

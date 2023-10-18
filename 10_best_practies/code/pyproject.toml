@@ -10,3 +10,11 @@ disable = [
         "invalid-name",
         "missing-timeout"
 ]
+[tool.black]
+line-length = 88
+target-version = ['py39']
+skip-string-normalization = true
+
+[tool.isort]
+multi_line_output = 3
+length_sort = true
