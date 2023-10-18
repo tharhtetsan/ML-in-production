@@ -139,3 +139,6 @@ service-acc/
 *.tflite
 
 experiment-tracking/mlflow/exp-tracking-and-fine-tune/model/
+
+__pycache__
+**/.DS_Store

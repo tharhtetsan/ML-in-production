@@ -166,3 +166,4 @@ experiment-tracking/mlflow/exp-tracking-and-fine-tune/model/
 
 tf_model/
 5_deployment_on_Edge_devices/tensorflow_onnx_and_tflite/dataset/
+.DS_Store

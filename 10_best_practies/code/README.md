@@ -123,6 +123,17 @@ pipenv run pytest
 
 ```
 
+
+## Git pre-commit hooks
+```bash
+pipenv install --dev pre-commit
+pipenv run pre-commit sample-config
+pipenv run pre-commit sample-config > .pre-commit-config.yaml
+ls .git/hooks
+pipenv run pre-commit install
+
+```
+
 ### Reference
 
 - [bash-shebang](https://linuxize.com/post/bash-shebang/)
