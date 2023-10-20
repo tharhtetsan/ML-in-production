@@ -23,8 +23,8 @@ resource null_resource ecr_image {
      command = <<EOF
              aws ecr get-login-password --region ${var.region} | docker login --username AWS --password-stdin ${var.account_id}.dkr.ecr.${var.region}.amazonaws.com
              cd ../
-             docker build -t ${aws_ecr_repository.repo.repository_url}:${var.ecr_image_tag} .
-             docker push ${aws_ecr_repository.repo.repository_url}:${var.ecr_image_tag}
+             sudo docker build -t ${aws_ecr_repository.repo.repository_url}:${var.ecr_image_tag} .
+             sudo docker push ${aws_ecr_repository.repo.repository_url}:${var.ecr_image_tag}
          EOF
    }
 }
@@ -36,4 +36,8 @@ data aws_ecr_image lambda_image {
  ]
  repository_name = var.ecr_repo_name
  image_tag       = var.ecr_image_tag
+}
+
+output "image_uri" {
+  value     = "${aws_ecr_repository.repo.repository_url}:${data.aws_ecr_image.lambda_image.image_tag}"
 }
