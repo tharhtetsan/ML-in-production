@@ -1,6 +1,6 @@
 # ML-in-production
 
-Course outline
+Course outlines
 
 | Chapter Name                                                 | Course demo |            Technology summary             |
 | ------------------------------------------------------------ | :---------: | :---------------------------------------: |
