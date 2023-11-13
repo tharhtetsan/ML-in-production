@@ -1,20 +1,32 @@
 
-# ONOW-testing
-
-**docker image prune**
-```
-docker-compose up
-```
+**Airflow for beginner**
 
 
+Airflow has some problems with python versions. so we need set some specific python version.
+```bash
+conda create --name airflow_env python=3.9 -y
+conda activate airflow_env
+pip install "apache-airflow==2.2.3" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.2.3/constraints-no-providers-3.9.txt"
 
-check docker postgres image-ID and check the IP address from that image-ID 
-```
-docker ps
-docker exec -it  aa7368bbd47a /bin/bash
-hostname -I
 ```
 
-#### References 
-- [Building a Server Postgres + Airflow](https://www.linkedin.com/pulse/building-server-postgres-airflow-simple-way-docker-rabelo-saraiva)
-- [Air flow and docker](https://blog.devgenius.io/etl-process-using-airflow-and-docker-226aa5c7a41a)
+Initial Airflow setup
+```
+export AIRFLOW_HOME=.
+airflow db init
+```
+
+Create one user for login
+```
+airflow users create --username admin --firstname tharhtet --lastname san --role Admin --email tharhtet@ai.com
+airflow webserver -p 8080 
+
+```
+
+
+```
+
+```
+
+#### References
+
