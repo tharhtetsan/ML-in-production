@@ -28,7 +28,7 @@ airflow webserver -p 5000
 ```bash
 curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.7.3/docker-compose.yaml'
 
-mkdir -p ./dags ./logs ./plugins ./config
+mkdir -p ./dags ./logs ./plugins ./config ./py_modules
 docker-compose up airflow-init
 docker-compose up
 ```
