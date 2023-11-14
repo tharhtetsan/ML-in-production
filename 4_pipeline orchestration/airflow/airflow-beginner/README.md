@@ -19,14 +19,21 @@ airflow db init
 Create one user for login
 ```
 airflow users create --username admin --firstname tharhtet --lastname san --role Admin --email tharhtet@ai.com
-airflow webserver -p 8080 
+airflow webserver -p 5000 
 
 ```
 
 
-```
+### Airflow with docker
+```bash
+curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.7.3/docker-compose.yaml'
 
+mkdir -p ./dags ./logs ./plugins ./config
+docker-compose up airflow-init
+docker-compose up
 ```
 
 #### References
+- [airflow-docker-reference](https://github.com/coder2j/airflow-docker/blob/main/docker-compose.yaml)
+
 
